@@ -1,0 +1,12 @@
+
+#!/bin/sh
+
+message=$(cat "$1")
+
+pattern='^(feat|fix|docs|test|refactor|chore)(\([a-zA-Z0-9._/-]+\))?: .+'
+
+if ! printf '%s\n' "$message" | grep -Eq "$pattern"; then
+    echo "Invalid commit message."
+    echo "Example: feat: add average API"
+    exit 1
+fi
